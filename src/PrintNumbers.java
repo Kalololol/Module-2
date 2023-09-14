@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class PrintNumbers {
     //Napisz program, który przyjmie od użytkownika liczbę naturalną większą lub równą zeru,
     // a następnie wydrukuj każdą liczbę (zaczynając od zera) aż do liczby podanej przez użytkownika;
-    Scanner input = new Scanner(System.in);
+    private final Scanner input = new Scanner(System.in);
 
     public void printing() {
         System.out.println("Wprowadź liczbę naturalną większą lub równą 0");
@@ -19,13 +19,10 @@ public class PrintNumbers {
         System.out.println("Wprowadź liczbę naturalną większą lub równą 0");
         int inputNumber = input.nextInt();
         int result = 0;
-        if (inputNumber == 0) System.out.println("Wprowadzona wartość to 0");
-        else {
             for (int i = 1; i <= inputNumber; i++) {
                 result += i;
             }
             System.out.println("Suma liczb narastająco wynosi: " + result);
-        }
     }
 
     //Ciąg fibonacciego;
@@ -34,19 +31,18 @@ public class PrintNumbers {
     //Przykładowo dla wartości 3, wydrukowane liczby to: 0, 1, 1, 2
     // f(n)=f(n-2)+f(n-1)
 
-    public void fibonaciSequence(int number) {
-
-        long[] fibonacciNumbers = new long[number];
-        fibonacciNumbers[0] = 0;
-        fibonacciNumbers[1] = 1;
-
-        for (int i = 2; i < number; i++) {
-            fibonacciNumbers[i] = fibonacciNumbers[i - 1] + fibonacciNumbers[i - 2];
+    public void fibonaciSequence() {
+        System.out.print("Podaj liczbę n: ");
+        int n = input.nextInt();
+        for (int i = 0; i < n; i++) {
+            System.out.print(fibonacci(i) + " ");
         }
-
-        System.out.println("Liczby z ciągu Fibonacciego:");
-        for (int i = 0; i < number; i++) {
-            System.out.print(fibonacciNumbers[i] + " ");
+    }
+    public static int fibonacci(int n) {
+        if (n <= 1) {
+            return n;
+        } else {
+            return fibonacci(n - 1) + fibonacci(n - 2);
         }
     }
     public void silnia(int number){

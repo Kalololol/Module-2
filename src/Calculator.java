@@ -13,61 +13,83 @@ public class Calculator {
         double firstNum, secondNum;
         String inputChar, inputExit;
         Scanner input = new Scanner(System.in);
-        double result;
         boolean exit = true;
+        boolean condition = true;
+        System.out.println("Witaj w Kalkulatorze!");
 
         do {
-            System.out.println("Witaj w Kalkulatorze!");
-            System.out.println("Wprowadź dane:");
-            System.out.println("Podaj pierwszą liczbę: ");
-            firstNum = input.nextDouble();
-            System.out.println("Podaj drugą liczbę: ");
-            secondNum = input.nextDouble();
-            System.out.println("Wprowadź typ operacji: ");
-            System.out.println("Dozwolone znaki operacji: + - * /");
-            inputChar = input.next();
+            if(condition) {
+                System.out.println("Wprowadź dane:");
+                System.out.println("Podaj pierwszą liczbę: ");
+                firstNum = input.nextDouble();
+                System.out.println("Podaj drugą liczbę: ");
+                secondNum = input.nextDouble();
+                System.out.println("Wprowadź typ operacji: ");
+                System.out.println("Dozwolone znaki operacji: + - * /");
+                inputChar = input.next();
 
-            switch (inputChar) {
-                case "+":
-                    System.out.println(firstNum + " + " + secondNum + " = " + (firstNum + secondNum));
-                    break;
-                case "-":
-                    System.out.println(firstNum + " - " + secondNum + " = " + (firstNum - secondNum));
-                    break;
-                case "*":
-                    System.out.println(firstNum + " * " + secondNum + " = " + (firstNum * secondNum));
-                    break;
-                case "/":
-                    if(secondNum == 0) System.out.println("Nie można dzielić przez zero, zacznij od nowa");
-                    else System.out.println(firstNum + " / " + secondNum + " = " + (firstNum / secondNum));
-                    break;
-                default:
-                    System.out.println("Wprowadzone wartości są niepoprawne, spróbuj jeszcze raz!");
-            }
-            boolean exitExit = true;
-            do {
-                System.out.println("Czy chcesz zakończyć?");
-                System.out.println("Wybierz Y / N");
-                inputExit = input.next().toUpperCase();
-
-                switch (inputExit){
-                    case "Y":
-                        exit = false;
-                        exitExit = true;
+                switch (inputChar) {
+                    case "+":
+                        sum(firstNum, secondNum);
                         break;
-                    case "N":
-                        exit = true;
-                        exitExit = true;
+                    case "-":
+                        subtraction(firstNum, secondNum);
+                        break;
+                    case "*":
+                        multiplication(firstNum, secondNum);
+                        break;
+                    case "/":
+                        divide(firstNum, secondNum);
                         break;
                     default:
-                        System.out.println("UPS! Coś poszło nie tak, spróbuj ponownie");
-                        exitExit = false;
+                        other();
                 }
-            }while(!exitExit);
+            }
+                System.out.println("Czy chcesz zakończyć?");
+                System.out.println("Wybierz Y / N");
+                inputExit = input.next().toLowerCase();
+
+                switch (inputExit){
+                    case "y":
+                        exit = false;
+                        condition = true;
+                        break;
+                    case "n":
+                        exit = true;
+                        condition = true;
+                        break;
+                    default:
+                        other();
+                        condition = false;
+                }
 
 
         } while (exit);
         System.out.println("Koniec!");
+    }
+
+    public void sum(double firstNum, double secondNum){
+        System.out.println(firstNum + " + " + secondNum + " = " + (firstNum + secondNum));
+    }
+    public void subtraction(double firstNum, double secondNum){
+        System.out.println(firstNum + " - " + secondNum + " = " + (firstNum - secondNum));
+    }
+    public void multiplication(double firstNum, double secondNum){
+        System.out.println(firstNum + " * " + secondNum + " = " + (firstNum * secondNum));
+    }
+    public void divide(double firstNum, double secondNum){
+        if (secondNum == 0)
+        {
+            System.out.println("Nie można dzielić przez zero, zacznij od nowa");
+        }
+        else
+        {
+            System.out.println(firstNum + " / " + secondNum + " = " + (firstNum / secondNum));
+        }
+    }
+    public void other()
+    {
+        System.out.println("UPS! Coś poszło nie tak, spróbuj ponownie");
     }
 
 }
